@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7237318249433498312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2659569565287808496}
+  - component: {fileID: 6812575050543726642}
+  m_Layer: 0
+  m_Name: The Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2659569565287808496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237318249433498312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6812575050543726642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237318249433498312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafc34e3bb7b24a499a5edc03915f710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 1
+  width: 7
+  height: 10
+  OffSet: 25
+  TilePrefab: {fileID: 986341951889327989, guid: e6c4d050df6f6ac4baf8ae78cd00a714, type: 3}
+  dots:
+  - {fileID: 1883327579809113642, guid: f55f6e1fb8f0f7d4f834b9040ad3c962, type: 3}
+  - {fileID: 1883327579809113642, guid: 3e8a6249b890a124d920c9d0d07007bf, type: 3}
+  - {fileID: 8748595058276141782, guid: 9b9d058b5cbbde44dadfb10f240105c4, type: 3}
+  - {fileID: 7770282131989149989, guid: 6cdf4b4ead5b6ac4aae3223bd680cb71, type: 3}
+  - {fileID: 1272273533808634342, guid: e5d866ddfd8cc5b4995eaf6de38d2c51, type: 3}
+  - {fileID: 4513322906142580404, guid: 258d9e09e258fb24d88de69f3251ad56, type: 3}
+  DestroyEffect: {fileID: 4823407496737945149, guid: 6ff97f457cefe534a958b469c61e5343, type: 3}
+  currentdot: {fileID: 0}
