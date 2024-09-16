@@ -20,6 +20,25 @@ public class FindMatches : MonoBehaviour
         StartCoroutine(FindAllMatchesCo());
     }
 
+    private List<GameObject> IsRowBomb(Dot dot1, Dot dot2, Dot dot3)
+    {
+        List<GameObject> currentdots = new List<GameObject>();
+        if (dot1.IsRowBomb)
+        {
+            currentMatches.Union(GetRowPieces(dot1.row));
+        }
+
+        if (dot2.IsRowBomb)
+        {
+            currentMatches.Union(GetRowPieces(dot2.row));
+        }
+
+        if (dot3.IsRowBomb)
+        {
+            currentMatches.Union(GetRowPieces(dot3.row));
+        }
+        return currentdots;
+    }
     private IEnumerator FindAllMatchesCo()
     {
         yield return new WaitForSeconds(.2f);
@@ -135,6 +154,22 @@ public class FindMatches : MonoBehaviour
         }
     }
 
+    public void MatchPiecesOfColr(string color)
+    {
+        for (int i = 0; i < Board.width; i++)
+        {
+            for (int j = 0; j < Board.height; j++)
+            {
+                //check if that piece exist
+                if (Board.AllDots[i,j].tag == color)
+                {
+                    //set that dot to be matched
+                    Board.AllDots[i, j].GetComponent<Dot>().IsMatched = true;
+                }
+            }
+        }
+    }
+
     List<GameObject> GetColumnPieces(int column)
     {
         List<GameObject> dots = new List<GameObject>();
@@ -173,21 +208,7 @@ public class FindMatches : MonoBehaviour
             {
                 //make it unmacthed
                 Board.currentdot.IsMatched = false;
-                /*
-                //decide what bomb
-                int Typeofbomb = Random.Range(0, 100);
-                if (Typeofbomb < 50)
-                {
-                    //row bomb
-                    Board.currentdot.MakeRowbomb();
-
-                }
-                else if(Typeofbomb >= 50)
-                {
-                    //column bomb
-                    Board.currentdot.MakeColumnbomb();
-                }
-                */
+               
                 if((Board.currentdot.SwipeAngle > -45 && Board.currentdot.SwipeAngle <=45)
                     ||(Board.currentdot.SwipeAngle < -135 && Board.currentdot.SwipeAngle >= 135))
                 {
@@ -207,21 +228,7 @@ public class FindMatches : MonoBehaviour
                 {
                     //make it umached
                     otherdot.IsMatched = false;
-                    /*
-                    //decide type of bomb
-                    int Typeofbomb = Random.Range(0, 100);
-                    if (Typeofbomb < 50)
-                    {
-                        //row bomb
-                        otherdot.MakeRowbomb();
-
-                    }
-                    else if (Typeofbomb >= 50)
-                    {
-                        //column bomb
-                        otherdot.MakeColumnbomb();
-                    }
-                    */
+                    
                     if ((Board.currentdot.SwipeAngle > -45 && Board.currentdot.SwipeAngle <= 45)
                     || (Board.currentdot.SwipeAngle < -135 && Board.currentdot.SwipeAngle >= 135))
                     {

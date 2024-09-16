@@ -26,10 +26,13 @@ public class Dot : MonoBehaviour
     public float SwipeResist = 1f;
 
     [Header("Powerup swtuff")]
+    public bool IsColorBomb;
     public bool IsColumnBomb;
     public bool IsRowBomb;
     public GameObject RowArrow;
     public GameObject ColumnArrow;
+    public GameObject Colorbomb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +56,9 @@ public class Dot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            IsRowBomb = true;
-            GameObject arrow = Instantiate(RowArrow, transform.position, Quaternion.identity);
-            arrow.transform.parent = this.transform;
+            IsColorBomb = true;
+            GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
+            color.transform.parent = this.transform;
         }
     }
 
@@ -112,6 +115,19 @@ public class Dot : MonoBehaviour
     
     public IEnumerator CheckMoveCO()
     {
+        if (IsColorBomb)
+        {
+            //this one is the volor bomb and the other is the one to destroy
+            findMatches.MatchPiecesOfColr(OtherDot.tag);
+            IsMatched = true;
+        }
+        else if (OtherDot.GetComponent<Dot>().IsColorBomb)
+        {
+            //other one is the color bomb this one is to desroy color
+            findMatches.MatchPiecesOfColr(this.gameObject.tag);
+            OtherDot.GetComponent<Dot>().IsMatched = true;
+
+        }
         yield return new WaitForSeconds(.5f);
         if(OtherDot != null)
         {
