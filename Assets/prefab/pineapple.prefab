@@ -111,9 +111,11 @@ MonoBehaviour:
   IsColorBomb: 0
   IsColumnBomb: 0
   IsRowBomb: 0
+  IsAdjacentBomb: 0
   RowArrow: {fileID: 1286617537162606054, guid: 31afe2d47900da54da05c52ede8cb548, type: 3}
   ColumnArrow: {fileID: 2340167924328671171, guid: c302bdddcb1060145a692b5b85287f26, type: 3}
   Colorbomb: {fileID: 5487704970207431131, guid: 87969f0a9785aa84caa3ab88db6ad2fc, type: 3}
+  AdjacentMark: {fileID: 2510184797494192625, guid: 4ef71534cc46fa94ab4e8763aa7148e5, type: 3}
 --- !u!58 &580098721568569904
 CircleCollider2D:
   m_ObjectHideFlags: 0
