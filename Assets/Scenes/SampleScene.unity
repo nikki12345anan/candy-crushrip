@@ -187,6 +187,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: BreakableTilePreFab
+      value: 
+      objectReference: {fileID: 109650245213953845, guid: 73378eb575226ba4296439ed38dd86c0, type: 3}
+    - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: BoardLayout.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: BoardLayout.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: BoardLayout.Array.data[0].y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2002116743519019750, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: m_Name
       value: The Board

@@ -32,10 +32,12 @@ public class Board : MonoBehaviour
     public int height;
     public int OffSet;
     public GameObject TilePrefab;
+    public GameObject BreakableTilePreFab;
     public GameObject[] dots;
     public GameObject DestroyEffect;
     public TileType[] BoardLayout;
     private bool[,] BlankSpaces;
+    private Backgroundtile[,] Breakabletiles;
     public GameObject[,] AllDots;
     public Dot currentdot;
     private FindMatches findMatches;
@@ -43,6 +45,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Breakabletiles = new Backgroundtile[width, height];
         findMatches = FindObjectOfType<FindMatches>();
         BlankSpaces = new bool[width, height];
         AllDots = new GameObject[width, height];
@@ -59,10 +62,28 @@ public class Board : MonoBehaviour
             }
         }
     }
+    
+    public void GenerateBreakableTiles()
+    {
+        //look at all the tiles in the layout
+
+        for (int i = 0; i < BoardLayout.Length; i++)
+        {
+            //if jelly tile
+            if (BoardLayout[i].tilekind == TileKind.Breakable)
+            {
+                //create jelly tile
+                Vector2 tempPosition = new Vector2(BoardLayout[i].x, BoardLayout[i].y);
+                GameObject tile = Instantiate(BreakableTilePreFab,tempPosition, Quaternion.identity);
+                Breakabletiles[BoardLayout[i].x, BoardLayout[i].y] = tile.GetComponent<Backgroundtile>();
+            }
+        }
+    }
 
     private void SetUp()
     {
         GenerateBlankSpace();
+        GenerateBreakableTiles();
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -252,6 +273,16 @@ public class Board : MonoBehaviour
                 CheckToMakeBombs();
             }
 
+            //does a tile need to break
+            if (Breakabletiles[column,row] != null)
+            {
+                Breakabletiles[column, row].TakeDamage(1);
+                if (Breakabletiles[column,row].HitPoints <= 0)
+                {
+                    Breakabletiles[column, row] = null;
+                }
+            }
+
             GameObject particle = Instantiate(DestroyEffect, AllDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
             Destroy(AllDots[column, row]);
@@ -378,6 +409,99 @@ public class Board : MonoBehaviour
         findMatches.currentMatches.Clear();
         currentdot = null;
         yield return new WaitForSeconds(.5f);
+        if (IsDeadLocked())
+        {
+            Debug.Log("deadlocked HAMBURGERRRRRR");
+        }
         currentState = GameState.move;
+    }
+
+    private void SwitchPieces(int column, int row, Vector2 direction)
+    {
+        //take first piece and save it in holder
+        GameObject holder = AllDots[column + (int)direction.y, row + (int)direction.y] as GameObject;
+
+
+        // switching the first dot to be second position
+        AllDots[column + (int)direction.x, row + (int)direction.y] = AllDots[column, row];
+
+
+        // set the first dot to be second dot
+        AllDots[column, row] = holder;
+    }
+
+    private bool CheckForMatches()
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                if (AllDots[i,j] != null)
+                {
+                    // make sure that one ant two to the right are in the board
+                    if (i < width - 2)
+                    {
+
+
+                        //check if dots to the rigt and two right make a match
+                        if (AllDots[i + 1, j] != null && AllDots[i + 2, j] != null)
+                        {
+                            if (AllDots[i + 1, j].tag == AllDots[i, j].tag && AllDots[i + 2, j].tag == AllDots[i, j].tag)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    if (j < height - 2)
+                    {
+                        if (AllDots[i, j + 1] != null && AllDots[i, j + 2] != null)
+                        {
+                            if (AllDots[i, j + 1].tag == AllDots[i, j].tag && AllDots[i, j + 2].tag == AllDots[i, j].tag)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private bool SwitchAndCheck(int column, int row, Vector2 direction)
+    {
+        SwitchPieces(column, row, direction);
+        if (CheckForMatches())
+        {
+            SwitchPieces(column, row, direction);
+            return true;
+        }
+        SwitchPieces(column, row, direction);
+        return false;
+    }
+
+    private bool IsDeadLocked()
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                if(i < width - 1)
+                {
+                    if(SwitchAndCheck(i, j, Vector2.right)) 
+                    {
+                        return false;
+                    }
+                }
+                if(j < height - 1)
+                {
+                    if (SwitchAndCheck(i, j, Vector2.up))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
