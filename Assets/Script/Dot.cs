@@ -196,11 +196,18 @@ public class Dot : MonoBehaviour
         OtherDot = Board.AllDots[Column + (int)direction.x, row + (int)direction.y];
         PreviousRow = row;
         PreviousColumn = Column;
-        OtherDot.GetComponent<Dot>().Column += -1 *(int)direction.x;
-        OtherDot.GetComponent<Dot>().row += -1 * (int)direction.y;
-        row += (int)direction.y;
-        Column += (int)direction.x;
-        StartCoroutine(CheckMoveCO());
+        if(OtherDot != null){
+            OtherDot.GetComponent<Dot>().Column += -1 * (int)direction.x;
+            OtherDot.GetComponent<Dot>().row += -1 * (int)direction.y;
+            row += (int)direction.y;
+            Column += (int)direction.x;
+            StartCoroutine(CheckMoveCO());
+        }
+        else
+        {
+            Board.currentState = GameState.move;
+        }
+
     }
 
 
