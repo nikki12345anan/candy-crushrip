@@ -202,7 +202,6 @@ public class Board : MonoBehaviour
             if (ColumnOrRow())
             {
                 //make a color bomb
-                Debug.Log("colorbomb");
                 //is the current dot matched
                 if(currentdot != null)
                 {
@@ -231,7 +230,6 @@ public class Board : MonoBehaviour
             else
             {
                 //make adjacent bomb
-                Debug.Log("adjacentbomb");
                 //is the current dot matched
                 if (currentdot != null)
                 {
@@ -367,8 +365,16 @@ public class Board : MonoBehaviour
                 if (AllDots[i,j] == null && !BlankSpaces[i,j])
                 {
                     Vector2 tempposition = new Vector2(i, j + OffSet);
-                    int dotTouse = Random.Range(0, dots.Length);
-                    GameObject piece = Instantiate(dots[dotTouse], tempposition, Quaternion.identity);
+                    int dotToUse = Random.Range(0, dots.Length);
+                    int maxIterations = 0;
+
+                    while (MatchesAt(i, j, dots[dotToUse]) && maxIterations < 100)
+                    {
+                        maxIterations++;
+                        dotToUse = Random.Range(0, dots.Length);
+                    }
+
+                    maxIterations = 0; GameObject piece = Instantiate(dots[dotToUse], tempposition, Quaternion.identity);
                     AllDots[i, j] = piece;
                     piece.GetComponent<Dot>().row = j;
                     piece.GetComponent<Dot>().Column = i;
@@ -409,8 +415,10 @@ public class Board : MonoBehaviour
         findMatches.currentMatches.Clear();
         currentdot = null;
         yield return new WaitForSeconds(.5f);
+
         if (IsDeadLocked())
         {
+            ShuffleBoard();
             Debug.Log("deadlocked HAMBURGERRRRRR");
         }
         currentState = GameState.move;
@@ -419,7 +427,7 @@ public class Board : MonoBehaviour
     private void SwitchPieces(int column, int row, Vector2 direction)
     {
         //take first piece and save it in holder
-        GameObject holder = AllDots[column + (int)direction.y, row + (int)direction.y] as GameObject;
+        GameObject holder = AllDots[column + (int)direction.x, row + (int)direction.y] as GameObject;
 
 
         // switching the first dot to be second position
@@ -486,22 +494,82 @@ public class Board : MonoBehaviour
         {
             for(int j = 0; j < height; j++)
             {
-                if(i < width - 1)
+                if (AllDots[i, j] != null)
                 {
-                    if(SwitchAndCheck(i, j, Vector2.right)) 
+
+
+                    if (i < width - 1)
                     {
-                        return false;
+                        if (SwitchAndCheck(i, j, Vector2.right))
+                        {
+                            return false;
+                        }
                     }
-                }
-                if(j < height - 1)
-                {
-                    if (SwitchAndCheck(i, j, Vector2.up))
+                    if (j < height - 1)
                     {
-                        return false;
+                        if (SwitchAndCheck(i, j, Vector2.up))
+                        {
+                            return false;
+                        }
                     }
                 }
             }
         }
         return true;
+    }
+    private void ShuffleBoard()
+    {
+        //create list
+        List<GameObject> newBoard = new List<GameObject>();
+        //add pieces to list
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                if (AllDots[i,j] != null)
+                {
+                    newBoard.Add(AllDots[i, j]);
+                }
+            }
+        }
+        //her parça için
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                //if spot should not be blank
+                if (!BlankSpaces[i, j])
+                {
+                    //pick random number
+                    int PieceToUse = Random.Range(0, newBoard.Count);
+                    
+                    int maxIterations = 0;
+                    while (MatchesAt(i, j, newBoard[PieceToUse]) && maxIterations < 100)
+                    {
+                        PieceToUse = Random.Range(0, newBoard.Count);
+                        maxIterations++;
+                        Debug.Log(maxIterations);
+                    }
+                    maxIterations = 0;
+
+                    //make a container for piece
+                    Dot piece = newBoard[PieceToUse].GetComponent<Dot>();
+
+                    //assign column and row
+                    piece.Column = i;
+                    piece.row = j;
+                    //fill in the dots array with this new piece
+                    AllDots[i, j] = newBoard[PieceToUse];
+                    //remove from list
+                    newBoard.Remove(newBoard[PieceToUse]);
+                }
+            }
+        }
+        //check and repeat if still locked
+        if (IsDeadLocked())
+        {
+            ShuffleBoard();
+        }
+
     }
 }

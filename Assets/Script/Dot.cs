@@ -158,7 +158,6 @@ public class Dot : MonoBehaviour
         if(Board.currentState == GameState.move)
         {
             FirstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(FirstTouchPosition);
         }
         
     }
@@ -179,7 +178,6 @@ public class Dot : MonoBehaviour
         {
             Board.currentState = GameState.wait;
             SwipeAngle = Mathf.Atan2(LastTouchPosition.y - FirstTouchPosition.y, LastTouchPosition.x - FirstTouchPosition.x) * 180 / Mathf.PI;
-            Debug.Log(SwipeAngle);
             Movepieces();
             Board.currentdot = this;
 
