@@ -13,7 +13,7 @@ public class Dot : MonoBehaviour
     public int TargetY;
     public bool IsMatched = false;
 
-
+    private HintManager hintmanager;
     private FindMatches findMatches;
     private Board Board;
     public GameObject OtherDot;
@@ -44,6 +44,7 @@ public class Dot : MonoBehaviour
         IsColorBomb = false;
         IsAdjacentBomb = false;
 
+        hintmanager = FindObjectOfType<HintManager>();
         Board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
         //TargetX = (int)transform.position.x;
@@ -155,6 +156,12 @@ public class Dot : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        //ip ucunu yok et
+        if(hintmanager != null)
+        {
+            hintmanager.DestroyHint();
+        }
+
         if(Board.currentState == GameState.move)
         {
             FirstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

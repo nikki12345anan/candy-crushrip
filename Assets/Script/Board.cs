@@ -205,7 +205,7 @@ public class Board : MonoBehaviour
                 //is the current dot matched
                 if(currentdot != null)
                 {
-                    if (currentdot.IsColorBomb)
+                    if (!currentdot.IsColorBomb)
                     {
                         currentdot.IsMatched = false;
                         currentdot.MakeColorBomb();
@@ -476,7 +476,7 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    private bool SwitchAndCheck(int column, int row, Vector2 direction)
+    public bool SwitchAndCheck(int column, int row, Vector2 direction)
     {
         SwitchPieces(column, row, direction);
         if (CheckForMatches())

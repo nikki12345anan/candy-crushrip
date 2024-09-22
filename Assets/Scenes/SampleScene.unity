@@ -122,6 +122,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &345950513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002116743519019750, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+  m_PrefabInstance: {fileID: 4318371733915130276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &345950516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345950513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b5835173fe2754c833045c6efb517d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HintDelay: 20
+  HintParticle: {fileID: 6867495843141400203, guid: dc48cfdc8bf87bf4a9b9784005a3641d, type: 3}
+  CurrentHint: {fileID: 0}
 --- !u!1001 &2301509248643989562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 109650245213953845, guid: 73378eb575226ba4296439ed38dd86c0, type: 3}
     - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: BoardLayout.Array.size
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: BoardLayout.Array.data[0].x
@@ -462,7 +482,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2002116743519019750, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 345950516}
   m_SourcePrefab: {fileID: 100100000, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
 --- !u!1001 &4545763583740242131
 PrefabInstance:
@@ -529,6 +552,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2126243194448118296, guid: 27bb7e9223af9994ba2b590c8d10259b, type: 3}
+      propertyPath: padding
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3101818076420544786, guid: 27bb7e9223af9994ba2b590c8d10259b, type: 3}
       propertyPath: m_Name
       value: Main Camera
