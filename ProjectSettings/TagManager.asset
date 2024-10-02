@@ -11,6 +11,7 @@ TagManager:
   - watermelon
   - banana
   - mangosto
+  - Color
   layers:
   - Default
   - TransparentFX

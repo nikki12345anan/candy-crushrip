@@ -204,8 +204,11 @@ public class FindMatches : MonoBehaviour
                 //check if the piece is inside the board... hamburger aaaaaaaaaaaaaa
                 if(i >= 0 && i < Board.width && j >= 0 && j< Board.height)
                 {
-                    dots.Add(Board.AllDots[i, j]);
-                    Board.AllDots[i, j].GetComponent<Dot>().IsMatched = true; 
+                    if (Board.AllDots[i,j] != null)
+                    {
+                        dots.Add(Board.AllDots[i, j]);
+                        Board.AllDots[i, j].GetComponent<Dot>().IsMatched = true;
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ public class CameraScale : MonoBehaviour
     public float CameraOffSet;
     public float aspectRatio = 0.625f;
     public float padding = 2;
+    public float yOffSet = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,7 @@ public class CameraScale : MonoBehaviour
         board = FindObjectOfType<Board>();
         if(board != null)
         {
-            RepositionCamera(board.width + 12, board.height- 1);
+            RepositionCamera(board.width + 8, board.height- 1);
         }
     }
 

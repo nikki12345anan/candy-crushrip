@@ -183,10 +183,11 @@ public class Dot : MonoBehaviour
     {
         if(Mathf.Abs(LastTouchPosition.y -FirstTouchPosition.y) > SwipeResist ||Mathf.Abs(LastTouchPosition.x -FirstTouchPosition.x) > SwipeResist)
         {
-            Board.currentState = GameState.wait;
+            
             SwipeAngle = Mathf.Atan2(LastTouchPosition.y - FirstTouchPosition.y, LastTouchPosition.x - FirstTouchPosition.x) * 180 / Mathf.PI;
             Movepieces();
             Board.currentdot = this;
+            Board.currentState = GameState.wait;
 
         }
         else
@@ -298,6 +299,7 @@ public class Dot : MonoBehaviour
         IsColorBomb = true;
         GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
         color.transform.parent = this.transform;
+        this.gameObject.tag = "Color";
     }
     public void MakeAdjacentBomb()
     {
