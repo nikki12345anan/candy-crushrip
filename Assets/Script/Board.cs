@@ -44,11 +44,14 @@ public class Board : MonoBehaviour
     public int BasePieceValue = 20;
     private int StreakValue = 1;
     private scoreManager scoremanager;
+    private SoundManager soundmanager;
     public float refillDelay = 0.5f;
+    public int[] scoreGoals;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundmanager = FindObjectOfType<SoundManager>();
         scoremanager = FindObjectOfType<scoreManager>();
         Breakabletiles = new Backgroundtile[width, height];
         findMatches = FindObjectOfType<FindMatches>();
@@ -286,7 +289,10 @@ public class Board : MonoBehaviour
                     Breakabletiles[column, row] = null;
                 }
             }
+            //ses var mý
+            FindObjectOfType<SoundManager>().play("Geri al");
 
+            
             GameObject particle = Instantiate(DestroyEffect, AllDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
             Destroy(AllDots[column, row]);

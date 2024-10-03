@@ -61,6 +61,8 @@ public class Dot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            FindObjectOfType<SoundManager>().play("Geri al");
+
             IsAdjacentBomb = true;
             GameObject marker = Instantiate(AdjacentMark, transform.position, Quaternion.identity);
             marker.transform.parent = this.transform;

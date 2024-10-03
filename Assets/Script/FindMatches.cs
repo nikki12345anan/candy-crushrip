@@ -222,6 +222,11 @@ public class FindMatches : MonoBehaviour
         {
             if (Board.AllDots[column, i] != null)
             {
+                Dot dot = Board.AllDots[column, i].GetComponent<Dot>();
+                if (dot.IsRowBomb)
+                {
+                    dots.Union(GetRowPieces(i)).ToList();
+                }
                 dots.Add(Board.AllDots[column, i]);
                 Board.AllDots[column, i].GetComponent<Dot>().IsMatched = true;
             }
@@ -236,8 +241,13 @@ public class FindMatches : MonoBehaviour
         {
             if (Board.AllDots[i, Row] != null)
             {
+                Dot dot = Board.AllDots[i,Row].GetComponent<Dot>();
+                if (dot.IsColumnBomb)
+                {
+                    dots.Union(GetColumnPieces(i)).ToList();
+                }
                 dots.Add(Board.AllDots[i, Row]);
-                Board.AllDots[i, Row].GetComponent<Dot>().IsMatched = true;
+                dot.IsMatched = true;
             }
         }
         return dots;
