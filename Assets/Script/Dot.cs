@@ -63,9 +63,9 @@ public class Dot : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().play("Geri al");
 
-            IsAdjacentBomb = true;
-            GameObject marker = Instantiate(AdjacentMark, transform.position, Quaternion.identity);
-            marker.transform.parent = this.transform;
+            IsColorBomb = true;
+            GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
+            color.transform.parent = this.transform;
         }
     }
 
@@ -125,13 +125,13 @@ public class Dot : MonoBehaviour
         if (IsColorBomb)
         {
             //this one is the volor bomb and the other is the one to destroy
-            findMatches.MatchPiecesOfColr(OtherDot.tag);
+            findMatches.MatchPiecesOfColor(OtherDot.tag);
             IsMatched = true;
         }
         else if (OtherDot.GetComponent<Dot>().IsColorBomb)
         {
             //other one is the color bomb this one is to desroy color
-            findMatches.MatchPiecesOfColr(this.gameObject.tag);
+            findMatches.MatchPiecesOfColor(this.gameObject.tag);
             OtherDot.GetComponent<Dot>().IsMatched = true;
 
         }
@@ -301,7 +301,7 @@ public class Dot : MonoBehaviour
         IsColorBomb = true;
         GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
         color.transform.parent = this.transform;
-        this.gameObject.tag = "Color";
+        this.gameObject.tag = "color";
     }
     public void MakeAdjacentBomb()
     {

@@ -242,7 +242,7 @@ public class Board : MonoBehaviour
                 //is the current dot matched
                 if (currentdot != null)
                 {
-                    if (currentdot.IsAdjacentBomb)
+                    if (!currentdot.IsAdjacentBomb)
                     {
                         currentdot.IsMatched = false;
                         currentdot.MakeAdjacentBomb();

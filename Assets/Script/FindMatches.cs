@@ -178,17 +178,20 @@ public class FindMatches : MonoBehaviour
         }
     }
 
-    public void MatchPiecesOfColr(string color)
+    public void MatchPiecesOfColor(string color)
     {
         for (int i = 0; i < Board.width; i++)
         {
             for (int j = 0; j < Board.height; j++)
-            {
+            {                    
                 //check if that piece exist
-                if (Board.AllDots[i,j].tag == color)
+                if (Board.AllDots[i,j] != null)
                 {
-                    //set that dot to be matched
-                    Board.AllDots[i, j].GetComponent<Dot>().IsMatched = true;
+                    if (Board.AllDots[i, j].tag == color)
+                    {
+                        //set that dot to be matched
+                        Board.AllDots[i, j].GetComponent<Dot>().IsMatched = true;
+                    }
                 }
             }
         }

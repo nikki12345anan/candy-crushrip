@@ -7,7 +7,6 @@ public class SoundManager : MonoBehaviour
     public Sound[] sounds;
 
     public static SoundManager instance;
-    public AudioSource[] DestroyNoise;
 
     void Awake()
     {
@@ -19,11 +18,12 @@ public class SoundManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-
         DontDestroyOnLoad(gameObject);
+
         //sesi oyuna ekle
-        foreach(Sound s in sounds)
+        foreach (Sound s in sounds)
         {
             s.Source = gameObject.AddComponent<AudioSource>();
             s.Source.clip = s.clip;
