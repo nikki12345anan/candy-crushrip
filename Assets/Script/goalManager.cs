@@ -14,16 +14,19 @@ public class BlankGoal
 public class goalManager : MonoBehaviour
 {
     public BlankGoal[] LevelGoals;
+    public List<GoalPanel> CurrentGoals = new List<GoalPanel>();
     public GameObject GoalPreFab;
     public GameObject GoalIntroParent;
     public GameObject GoalGameParent;
+    private EndGameManager endGame;
     // Start is called before the first frame update
     void Start()
     {
-        SetupIntroGoals();
+        endGame = FindObjectOfType<EndGameManager>();
+        SetupGoals();
     }
 
-    void SetupIntroGoals()
+    void SetupGoals()
     {
         for(int i = 0; i < LevelGoals.Length; i++)
         {
@@ -39,13 +42,43 @@ public class goalManager : MonoBehaviour
             GameObject gamegoal = Instantiate(GoalPreFab, GoalGameParent.transform.position, Quaternion.identity);
             gamegoal.transform.SetParent(GoalGameParent.transform);
             panel = gamegoal.GetComponent<GoalPanel>();
+            CurrentGoals.Add(panel);
             panel.thisSprite = LevelGoals[i].GoalSprite;
             panel.thisString = "0/" + LevelGoals[i].NumberNeeded;
         }
     }
-    // Update is called once per frame
-    void Update()
+    
+    public void UpdateGoals()
     {
-        
+        int GoalsCompleted = 0;
+        for(int i = 0; i < LevelGoals.Length; i++)
+        {
+            CurrentGoals[i].thisText.text = "" + LevelGoals[i].NumberCollected + "/" + LevelGoals[i].NumberNeeded;
+            if (LevelGoals[i].NumberCollected >= LevelGoals[i].NumberNeeded)
+            {
+                GoalsCompleted++;
+                CurrentGoals[i].thisText.text = "" + LevelGoals[i].NumberNeeded + "/" + LevelGoals[i].NumberNeeded;
+            }
+        }
+        if(GoalsCompleted >= LevelGoals.Length)
+        {
+            if(endGame != null)
+            {
+                endGame.WinGame();
+                Debug.Log("youwwinn");
+
+            }
+        }
     }
+    public void CompareGoal(string GoalToCompare)
+    {
+        for(int i = 0; i < LevelGoals.Length; i++)
+        {
+            if(GoalToCompare == LevelGoals[i].MatchValue)
+            {
+                LevelGoals[i].NumberCollected++;
+            }
+        }
+    }
+
 }

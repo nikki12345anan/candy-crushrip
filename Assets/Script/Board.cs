@@ -7,7 +7,10 @@ public enum GameState
 {
     //hamle bekleme suresi gerekirse if al kisitla
     wait,
-    move
+    move,
+    win,
+    lose,
+    pause
 }
 
 public enum TileKind
@@ -45,12 +48,14 @@ public class Board : MonoBehaviour
     private int StreakValue = 1;
     private scoreManager scoremanager;
     private SoundManager soundmanager;
+    private goalManager goalManager;
     public float refillDelay = 0.5f;
     public int[] scoreGoals;
 
     // Start is called before the first frame update
     void Start()
     {
+        goalManager = FindObjectOfType<goalManager>();
         soundmanager = FindObjectOfType<SoundManager>();
         scoremanager = FindObjectOfType<scoreManager>();
         Breakabletiles = new Backgroundtile[width, height];
@@ -58,6 +63,7 @@ public class Board : MonoBehaviour
         BlankSpaces = new bool[width, height];
         AllDots = new GameObject[width, height];
         SetUp();
+        currentState = GameState.pause;
     }
 
     public void GenerateBlankSpace()
@@ -289,6 +295,13 @@ public class Board : MonoBehaviour
                     Breakabletiles[column, row] = null;
                 }
             }
+
+            if(goalManager != null)
+            {
+                goalManager.CompareGoal(AllDots[column, row].tag.ToString());
+                goalManager.UpdateGoals();
+            }
+
             //ses var mý
             FindObjectOfType<SoundManager>().play("Geri al");
 
