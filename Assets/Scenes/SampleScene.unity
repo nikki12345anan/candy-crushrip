@@ -2948,6 +2948,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: world
+      value: 
+      objectReference: {fileID: 11400000, guid: 0761e82f6148a9245bf6a84c9ce1ab11, type: 2}
+    - target: {fileID: 733679916133435726, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: OffSet
       value: 10
       objectReference: {fileID: 0}

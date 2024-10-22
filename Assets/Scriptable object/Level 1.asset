@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29cbd9e5b069944c97b17361c35f264, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  width: 4
+  height: 4
+  boardlayout:
+  - x: 0
+    y: 0
+    tilekind: 0
+  dots:
+  - {fileID: 1883327579809113642, guid: f55f6e1fb8f0f7d4f834b9040ad3c962, type: 3}
+  - {fileID: 1883327579809113642, guid: 3e8a6249b890a124d920c9d0d07007bf, type: 3}
+  - {fileID: 4513322906142580404, guid: 258d9e09e258fb24d88de69f3251ad56, type: 3}
+  - {fileID: 1272273533808634342, guid: e5d866ddfd8cc5b4995eaf6de38d2c51, type: 3}
+  - {fileID: 7770282131989149989, guid: 6cdf4b4ead5b6ac4aae3223bd680cb71, type: 3}
+  - {fileID: 8748595058276141782, guid: 9b9d058b5cbbde44dadfb10f240105c4, type: 3}
+  scoregoals: 0a00000064000000e8030000
+  endgameRequirements:
+    gameType: 0
+    counterValue: 0
+  levelGoals: []
