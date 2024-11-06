@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29cbd9e5b069944c97b17361c35f264, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  width: 4
-  height: 4
+  width: 7
+  height: 10
   boardlayout:
   - x: 0
     y: 0
-    tilekind: 0
+    tilekind: 1
   dots:
   - {fileID: 1883327579809113642, guid: f55f6e1fb8f0f7d4f834b9040ad3c962, type: 3}
   - {fileID: 1883327579809113642, guid: 3e8a6249b890a124d920c9d0d07007bf, type: 3}
@@ -28,5 +28,17 @@ MonoBehaviour:
   scoregoals: 0a00000064000000e8030000
   endgameRequirements:
     gameType: 0
-    counterValue: 0
-  levelGoals: []
+    counterValue: 15
+  levelGoals:
+  - NumberNeeded: 45
+    NumberCollected: 17
+    GoalSprite: {fileID: 21300000, guid: 6d669e54369d3f84e87f62aed8c18227, type: 3}
+    MatchValue: apple
+  - NumberNeeded: 0
+    NumberCollected: 0
+    GoalSprite: {fileID: 0}
+    MatchValue: 
+  - NumberNeeded: 0
+    NumberCollected: 0
+    GoalSprite: {fileID: 0}
+    MatchValue: 
