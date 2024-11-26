@@ -64,6 +64,11 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        if(PlayerPrefs.HasKey("Current level"))
+        {
+            level = PlayerPrefs.GetInt("Current level");
+        }
+
         if(world != null)
         {
             if (level < world.levels.Length)

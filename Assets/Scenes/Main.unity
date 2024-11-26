@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55598762}
   - component: {fileID: 55598763}
+  - component: {fileID: 55598764}
   m_Layer: 0
   m_Name: EndGame Manager
   m_TagString: Untagged
@@ -256,6 +257,19 @@ MonoBehaviour:
   CurrentCounterValue: 0
   board: {fileID: 0}
   TimerSeconds: 0
+--- !u!114 &55598764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55598761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3aa9096fc01d44a90e99c5965d4506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scenetoload: Splash
 --- !u!1 &112682411
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 112682414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 55598764}
+        m_TargetAssemblyTypeName: BackToSPlash, Assembly-CSharp
+        m_MethodName: OK
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &112682414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 500454286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 55598764}
+        m_TargetAssemblyTypeName: BackToSPlash, Assembly-CSharp
+        m_MethodName: OK
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &500454286
 MonoBehaviour:
   m_ObjectHideFlags: 0
