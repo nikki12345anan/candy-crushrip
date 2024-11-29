@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29cbd9e5b069944c97b17361c35f264, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
+  width: 5
+  height: 5
+  boardlayout: []
+  dots: []
+  scoregoals: 
+  endgameRequirements:
+    gameType: 0
+    counterValue: 0
+  levelGoals: []

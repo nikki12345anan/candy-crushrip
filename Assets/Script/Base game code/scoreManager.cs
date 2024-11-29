@@ -9,11 +9,14 @@ public class scoreManager : MonoBehaviour
     public Text ScoreText;
     public int Score;
     public Image ScoreBar;
+    private Game_Data gameData;
 
     // Start is called before the first frame update
     void Start()
     {
         board = FindObjectOfType<Board>();
+        gameData = FindObjectOfType<Game_Data>();
+        Updatebar();
     }
 
     // Update is called once per frame
@@ -25,7 +28,21 @@ public class scoreManager : MonoBehaviour
     public void IncreaseScore(int amountToIncrease)
     {
         Score += amountToIncrease;
-        if(board != null && ScoreBar != null)
+        if (gameData != null)
+        {
+            int gihscore = gameData.savedata.Highscores[board.level];
+            if (Score > gihscore)
+            {
+                gameData.savedata.Highscores[board.level] = Score;
+            }
+            gameData.save();
+            Updatebar();
+        }
+    }
+
+    private void Updatebar()
+    {
+        if (board != null && ScoreBar != null)
         {
             int length = board.scoreGoals.Length;
             ScoreBar.fillAmount = (float)Score / (float)board.scoreGoals[length - 1];
