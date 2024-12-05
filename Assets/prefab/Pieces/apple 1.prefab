@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4517730268357539361}
   - component: {fileID: 3546369846789835308}
-  - component: {fileID: 4603050970269395520}
-  - component: {fileID: 8424764311924007469}
+  - component: {fileID: -6676239753921188024}
+  - component: {fileID: 5210408588209665826}
+  - component: {fileID: 5295744810414175998}
   m_Layer: 0
-  m_Name: apple
-  m_TagString: apple
+  m_Name: apple 1
+  m_TagString: napple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.783821, y: 3.8381095, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6d669e54369d3f84e87f62aed8c18227, type: 3}
+  m_Sprite: {fileID: -1362985821, guid: ae8e53441628a904f9203fe0660cbdbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4603050970269395520
+--- !u!58 &-6676239753921188024
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46545455
---- !u!114 &8424764311924007469
+--- !u!114 &5210408588209665826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,3 +152,24 @@ MonoBehaviour:
   ColumnArrow: {fileID: 2340167924328671171, guid: c302bdddcb1060145a692b5b85287f26, type: 3}
   Colorbomb: {fileID: 5487704970207431131, guid: 87969f0a9785aa84caa3ab88db6ad2fc, type: 3}
   AdjacentMark: {fileID: 2510184797494192625, guid: 4ef71534cc46fa94ab4e8763aa7148e5, type: 3}
+--- !u!95 &5295744810414175998
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883327579809113642}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c04cef44dd5e929449af58b72eb5a6e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -12,6 +12,7 @@ TagManager:
   - banana
   - mangosto
   - color
+  - Board
   layers:
   - Default
   - TransparentFX

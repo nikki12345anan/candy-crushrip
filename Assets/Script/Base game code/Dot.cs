@@ -13,6 +13,9 @@ public class Dot : MonoBehaviour
     public int TargetY;
     public bool IsMatched = false;
 
+    private Animator Anim;
+    private float ShineDelay;
+    private float ShineDelaySeconds;
     private EndGameManager endgamemanager;
     private HintManager hintmanager;
     private FindMatches findMatches;
@@ -40,22 +43,19 @@ public class Dot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Anim = GetComponent<Animator>();
         IsColumnBomb = false;
         IsRowBomb = false;
         IsColorBomb = false;
         IsAdjacentBomb = false;
 
+        ShineDelay = Random.Range(3f, 4f);
+        ShineDelaySeconds = ShineDelay;
 
         endgamemanager = FindObjectOfType<EndGameManager>();
         hintmanager = FindObjectOfType<HintManager>();
-        Board = FindObjectOfType<Board>();
+        Board = GameObject.FindWithTag("Board").GetComponent<Board>();
         findMatches = FindObjectOfType<FindMatches>();
-        //TargetX = (int)transform.position.x;
-        //TargetY = (int)transform.position.y;
-        //Column = TargetX;
-        //row = TargetY;
-        //PreviousRow = row;
-        //PreviousColumn = Column;
     }
 
     //Test debug only 
@@ -75,6 +75,12 @@ public class Dot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShineDelaySeconds -= Time.deltaTime;
+        if (ShineDelaySeconds <= 0)
+        { 
+            ShineDelaySeconds = ShineDelay;
+            StartCoroutine(StartShineCo());
+        }
 
         /*
         if (IsMatched)
@@ -123,6 +129,18 @@ public class Dot : MonoBehaviour
         }
     }
     
+    IEnumerator StartShineCo()
+    {
+        Anim.SetBool("Shine?", true);
+        yield return null;
+        Anim.SetBool("Shine?", false);
+    }
+
+    public void PopAnim()
+    {
+        Anim.SetBool("Popped?",true);
+
+    }
     public IEnumerator CheckMoveCO()
     {
         if (IsColorBomb)
@@ -296,28 +314,40 @@ public class Dot : MonoBehaviour
     }
     public void MakeRowbomb()
     {
-        IsRowBomb = true;
-        GameObject arrow = Instantiate(RowArrow, transform.position, Quaternion.identity);
-        arrow.transform.parent = this.transform;
+        if (!IsColumnBomb && !IsColorBomb && !IsAdjacentBomb)
+        {
+            IsRowBomb = true;
+            GameObject arrow = Instantiate(RowArrow, transform.position, Quaternion.identity);
+            arrow.transform.parent = this.transform;
+        }
     }
     public void MakeColumnbomb()
     {
-        IsColumnBomb = true;
-        GameObject arrow = Instantiate(ColumnArrow, transform.position, Quaternion.identity);
-        arrow.transform.parent = this.transform;
+        if (!IsRowBomb && !IsColorBomb && !IsAdjacentBomb)
+        {
+            IsColumnBomb = true;
+            GameObject arrow = Instantiate(ColumnArrow, transform.position, Quaternion.identity);
+            arrow.transform.parent = this.transform;
+        }
     }
 
     public void MakeColorBomb()
     {
-        IsColorBomb = true;
-        GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
-        color.transform.parent = this.transform;
-        this.gameObject.tag = "color";
+        if (!IsColumnBomb && !IsRowBomb && !IsAdjacentBomb)
+        {
+            IsColorBomb = true;
+            GameObject color = Instantiate(Colorbomb, transform.position, Quaternion.identity);
+            color.transform.parent = this.transform;
+            this.gameObject.tag = "color";
+        }
     }
     public void MakeAdjacentBomb()
     {
-        IsAdjacentBomb = true;
-        GameObject marker = Instantiate(AdjacentMark, transform.position, Quaternion.identity);
-        marker.transform.parent = this.transform;
+        if (!IsAdjacentBomb && !IsColumnBomb && !IsRowBomb)
+        {
+            IsAdjacentBomb = true;
+            GameObject marker = Instantiate(AdjacentMark, transform.position, Quaternion.identity);
+            marker.transform.parent = this.transform;
+        }
     }
 }

@@ -473,7 +473,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xC7ocuk po"
+  m_Text: Try again
 --- !u!222 &116604897
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3284,6 +3284,10 @@ PrefabInstance:
     - target: {fileID: 2002116743519019750, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: m_Name
       value: The Board
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002116743519019750, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
+      propertyPath: m_TagString
+      value: Board
       objectReference: {fileID: 0}
     - target: {fileID: 4965232446194760154, guid: c2ea117fc7a5fcb44aaa686275f7d301, type: 3}
       propertyPath: m_LocalPosition.x

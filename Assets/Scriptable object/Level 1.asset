@@ -31,14 +31,6 @@ MonoBehaviour:
     counterValue: 15
   levelGoals:
   - NumberNeeded: 45
-    NumberCollected: 17
+    NumberCollected: 27
     GoalSprite: {fileID: 21300000, guid: 6d669e54369d3f84e87f62aed8c18227, type: 3}
     MatchValue: apple
-  - NumberNeeded: 0
-    NumberCollected: 0
-    GoalSprite: {fileID: 0}
-    MatchValue: 
-  - NumberNeeded: 0
-    NumberCollected: 0
-    GoalSprite: {fileID: 0}
-    MatchValue: 
